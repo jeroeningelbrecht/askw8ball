@@ -9,11 +9,20 @@
 
         body {
             background-color: black;
+            
+        }
+        
+        #centered {
             margin: 0 auto;
             width: 450px;
         }
         
-        div {
+        hr {
+            border-top: 1px solid white;
+            width: 100%;
+        }
+        
+        #centered div {
             margin: 5em;
         }
 
@@ -42,31 +51,62 @@
 		  0% { transform: rotate(0deg); }
 		  100% { transform: rotate(360deg); }
 		}
-		
+        
+        #footer {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 1rem;
+            text-align: right;
+            border-top: 1px solid white;
+            color: white;
+        }
+        
 		.hidden { display:none;}
 		
+        .menu {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .menu p {
+            margin: 0 auto;
+        }
+        
 </style>
 	
 	</head>
 
 	<body>
 		
-		<div id="w8ballQuestion">
-			<form name="w8ballForm">
-				<input autofocus type="text" size="35"  id="w8ballQuestionText" placeholder="your question here">
-                                <button>Ask!</button>
-			</form>
-		</div>
+        <div id="centered">
+            
+            <div id="w8ballQuestion">
+                <form name="w8ballForm">
+                    <input autofocus type="text" size="35"  id="w8ballQuestionText" placeholder="your question here">
+                    <button>Ask!</button>
+                </form>
+            </div>
 		
-		<div id="w8ball">
-			<div id="loader" class="hidden"></div>	
-		</div>
-		
-		<div id="w8ballAnswer">
-			<p id="w8ballAnswerText"></p>
-			<img id="w8ballAnswerImage" src="" alt="askw8ballAnswerImage"/>
-		</div>
-		
+            <div id="w8ball">
+                <div id="loader" class="hidden"></div>	
+            </div>
+
+            <div id="w8ballAnswer">
+                <p id="w8ballAnswerText"></p>
+                <img id="w8ballAnswerImage" src="" alt="askw8ballAnswerImage"/>
+            </div>
+
+        </div>
+            
+        <div id="footer" class="menu">
+                <p>About</p>
+                <p><img alt="avatar" src="https://www.gravatar.com/avatar/dd666ee8bef207889d2325f077228054.jpg?s=50" /></p>        
+        </div>
+
 		
 		<script>
 			const form = document.getElementsByName('w8ballForm')[0];

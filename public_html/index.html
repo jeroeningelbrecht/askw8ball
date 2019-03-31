@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ask w8ball</title>
+	
+	<style>
+
+               body {
+                  background-color: black;
+               }
+
+                #w8ballQuestion {
+                  margin: 0 auto;
+                  width: 350px;
+                }
+		
+		#loader {
+		  border: 16px solid #f3f3f3;
+		  border-radius: 50%;
+		  border-top: 16px solid #3498db;
+		  width: 60px;
+		  height: 60px;
+		  -webkit-animation: spin 2s linear infinite; /* Safari */
+		  animation: spin 2s linear infinite;
+		}
+		
+		/* Safari */
+		@-webkit-keyframes spin {
+		  0% { -webkit-transform: rotate(0deg); }
+		  100% { -webkit-transform: rotate(360deg); }
+		}
+		
+		@keyframes spin {
+		  0% { transform: rotate(0deg); }
+		  100% { transform: rotate(360deg); }
+		}
+		
+		.hidden { display:none;}
+		
+</style>
+	
+	</head>
+
+	<body>
+		
+		<div id="w8ballQuestion">
+			<form name="w8ballForm">
+				<input type="text" size="35"  id="w8ballQuestionText" placeholder="your question here">
+                                <button>Ask!</button>
+			</form>
+		</div>
+		
+		<div id="w8ball">
+			<div id="loader" class="hidden"></div>	
+		</div>
+		
+		<div id="w8ballAnswer">
+			<p id="w8ballAnswerText"></p>
+			<img id="w8ballAnswerImage" src="" alt="askw8ballAnswerImage"/>
+		</div>
+		
+		
+		<script>
+			const form = document.getElementsByName('w8ballForm')[0];
+			const w8ballQuestionText = document.getElementById('w8ballQuestionText');
+			const w8ballAnswerText = document.getElementById('w8ballAnswerText');
+			const w8ballAnswerImage = document.getElementById('w8ballAnswerImage');
+			
+			const supportedLanguages = ['nl','fr','en','de'];
+			
+			const fat = {
+										text:{
+														nl:"neen - je bent nu al dik",
+														fr:"",
+														en:"no - you're fat already",
+														de:""
+													},
+										imageSrc:'./slimming-2728331_640.jfif'
+									};
+									
+			const dont = {
+										text: {
+														nl:"niet doen - je zal het je morgen beklagen",
+														fr:"",
+														en:"don't - you'll regret tomorrow",
+														de:""
+													},
+										imageSrc:'./nature-3238937_640.jfif'
+										};
+			
+			const answers = [fat,dont];
+			
+			form.onsubmit = function(event){
+				//prevent page from reloading and clearing the answer's text and image
+				event.preventDefault();
+				
+				//clean up eventual previous searchresult
+				w8ballAnswerText.textContent = '';
+				w8ballAnswerImage.src = '';
+
+				
+				document.getElementById('loader').style.display = 'block';
+				
+				window.setTimeout(think,3500);	
+			}
+			
+			function think(){								
+				const answer = answers[getRandomInt(0,answers.length)];
+				const browserLanguage = navigator.language.substring(0,2).toLowerCase();
+				
+				//default to english in case we don't support the user's language yet
+				const answerTextLanguage = supportedLanguages.indexOf(browserLanguage)>-1 ? browserLanguage : 'en';
+				
+				w8ballAnswerText.textContent = answer.text[answerTextLanguage];
+				w8ballAnswerImage.src = answer.imageSrc;
+				
+				//clear question text
+				w8ballQuestionText.value = "";
+				
+				document.getElementById('loader').style.display = 'none';
+				
+			}
+			
+			/*
+			*	below function returns a number between a minimum (inclusive) and a maximum (exclusive)
+			* source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+			*/
+			function getRandomInt(min, max) {
+  			min = Math.ceil(min);
+  			max = Math.floor(max);
+  			return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+			}
+		</script>
+		
+	</body>
+
+</html> 

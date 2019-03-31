@@ -7,21 +7,27 @@
 	
 	<style>
 
-               body {
-                  background-color: black;
-               }
+        body {
+            background-color: black;
+            margin: 0 auto;
+            width: 450px;
+        }
+        
+        div {
+            margin: 5em;
+        }
 
-                #w8ballQuestion {
-                  margin: 0 auto;
-                  width: 350px;
-                }
+        #w8ballAnswerText {
+            font: bold 1.2em "Courier New";
+            color: white;
+        }
 		
 		#loader {
 		  border: 16px solid #f3f3f3;
 		  border-radius: 50%;
 		  border-top: 16px solid #3498db;
-		  width: 60px;
-		  height: 60px;
+		  width: 30px;
+		  height: 30px;
 		  -webkit-animation: spin 2s linear infinite; /* Safari */
 		  animation: spin 2s linear infinite;
 		}
@@ -47,7 +53,7 @@
 		
 		<div id="w8ballQuestion">
 			<form name="w8ballForm">
-				<input type="text" size="35"  id="w8ballQuestionText" placeholder="your question here">
+				<input autofocus type="text" size="35"  id="w8ballQuestionText" placeholder="your question here">
                                 <button>Ask!</button>
 			</form>
 		</div>
@@ -70,28 +76,35 @@
 			
 			const supportedLanguages = ['nl','fr','en','de'];
 			
+            /**
+            * ANSWERS
+            */
 			const fat = {
-										text:{
-														nl:"neen - je bent nu al dik",
-														fr:"",
-														en:"no - you're fat already",
-														de:""
-													},
-										imageSrc:'./slimming-2728331_640.jfif'
-									};
+                text:{
+                    nl:"neen - je bent nu al dik",
+                    fr:"non - t'es déjà trop gros",
+                    en:"no - you're fat already",
+                    de:"nein - du bisst jetzt zu fett"
+                },
+                imageSrc:'./slimming-2728331_640.jfif'
+            };
 									
 			const dont = {
-										text: {
-														nl:"niet doen - je zal het je morgen beklagen",
-														fr:"",
-														en:"don't - you'll regret tomorrow",
-														de:""
-													},
-										imageSrc:'./nature-3238937_640.jfif'
-										};
+                text: {
+                    nl:"niet doen - je zal het je morgen beklagen",
+                    fr:"non - tu le regretteras demain",
+                    en:"don't - you'll regret it tomorrow",
+                    de:"nein - sie werden es morgen bereuen"
+                },
+                imageSrc:'./nature-3238937_640.jfif'
+            };
 			
 			const answers = [fat,dont];
 			
+            /**
+            * STOP ANSWERS
+            */
+            
 			form.onsubmit = function(event){
 				//prevent page from reloading and clearing the answer's text and image
 				event.preventDefault();

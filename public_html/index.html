@@ -27,30 +27,9 @@
         }
 
         #w8ballAnswerText {
-            font: bold 1.2em "Courier New";
+            font: bold 1.5em "Courier New";
             color: white;
         }
-		
-		#loader {
-		  border: 16px solid #f3f3f3;
-		  border-radius: 50%;
-		  border-top: 16px solid #3498db;
-		  width: 30px;
-		  height: 30px;
-		  -webkit-animation: spin 2s linear infinite; /* Safari */
-		  animation: spin 2s linear infinite;
-		}
-		
-		/* Safari */
-		@-webkit-keyframes spin {
-		  0% { -webkit-transform: rotate(0deg); }
-		  100% { -webkit-transform: rotate(360deg); }
-		}
-		
-		@keyframes spin {
-		  0% { transform: rotate(0deg); }
-		  100% { transform: rotate(360deg); }
-		}
         
         #footer {
             position: absolute;
@@ -75,13 +54,63 @@
         .menu p {
             margin: 0 auto;
         }
+
+		
+        /* spinner */
+        
+		#loader {
+		  border: 16px solid #f3f3f3;
+		  border-radius: 50%;
+		  border-top: 16px solid #3498db;
+		  width: 30px;
+		  height: 30px;
+		  -webkit-animation: spin 2s linear infinite; /* Safari */
+		  animation: spin 2s linear infinite;
+		}
+		
+		/* Safari */
+		@-webkit-keyframes spin {
+		  0% { -webkit-transform: rotate(0deg); }
+		  100% { -webkit-transform: rotate(360deg); }
+		}
+		
+		@keyframes spin {
+		  0% { transform: rotate(0deg); }
+		  100% { transform: rotate(360deg); }
+		}
+        
+        /* end spinner */
+        
+        
+        /* smokey text effect */
+        span {
+            text-shadow: 0 0 0 whitesmoke;
+        }
+        
+
+        @keyframes smoky {
+          60% {
+            text-shadow: 0 0 20px whitesmoke;
+          }
+          to {
+            transform:
+              translate3d(-15rem,-8rem,0)
+              rotate(40deg)
+              skewX(-70deg)
+              scale(1.5);
+            opacity: 0;
+          }
+        }
+        /* end smokey text effext */
+
         
 </style>
 	
 	</head>
 
 	<body>
-		
+        
+        
         <div id="centered">
             
             <div id="w8ballQuestion">
@@ -96,8 +125,9 @@
             </div>
 
             <div id="w8ballAnswer">
-                <p id="w8ballAnswerText"></p>
-                <img id="w8ballAnswerImage" src="" alt="askw8ballAnswerImage"/>
+                <p id="w8ballAnswerText">
+                   
+                </p>
             </div>
 
         </div>
@@ -112,7 +142,6 @@
 			const form = document.getElementsByName('w8ballForm')[0];
 			const w8ballQuestionText = document.getElementById('w8ballQuestionText');
 			const w8ballAnswerText = document.getElementById('w8ballAnswerText');
-			const w8ballAnswerImage = document.getElementById('w8ballAnswerImage');
 			
 			const supportedLanguages = ['nl','fr','en','de'];
 			
@@ -151,23 +180,41 @@
 				
 				//clean up eventual previous searchresult
 				w8ballAnswerText.textContent = '';
-				w8ballAnswerImage.src = '';
-
 				
-				document.getElementById('loader').style.display = 'block';
 				
-				window.setTimeout(think,3500);	
+				think();	
 			}
 			
 			function think(){								
 				const answer = answers[getRandomInt(0,answers.length)];
+                
+                /* TODO
+                check again when working on internationalization 
 				const browserLanguage = navigator.language.substring(0,2).toLowerCase();
 				
 				//default to english in case we don't support the user's language yet
 				const answerTextLanguage = supportedLanguages.indexOf(browserLanguage)>-1 ? browserLanguage : 'en';
 				
-				w8ballAnswerText.textContent = answer.text[answerTextLanguage];
-				w8ballAnswerImage.src = answer.imageSrc;
+                */
+                
+                const answerTextLanguage = 'en';
+				const answerString = answer.text[answerTextLanguage];
+                
+                for(i=0;i<answerString.length;i -=- 1){
+                    var answerSpan = document.createElement('span');
+                    answerSpan.setAttribute('id','s'+i);
+                    answerSpan.setAttribute('style','animation: smoky 5s ' +(i+0.5)+ 's both;animation-direction: reverse;');
+        
+                    const currentChar = answerString[i];
+                    if(currentChar ===' '){
+                        answerSpan.innerHTML = "&nbsp;";
+                    } else {
+                        answerSpan.textContent  = currentChar;
+                    }
+                    w8ballAnswerText.appendChild(answerSpan);
+                    
+                }
+                
 				
 				//clear question text
 				w8ballQuestionText.value = "";

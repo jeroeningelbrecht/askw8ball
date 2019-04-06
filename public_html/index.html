@@ -1,150 +1,93 @@
-<!DOCTYPE html>
-<html>
-	<head>
-	<meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>ask w8ball</title>
-	
-	<style>
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        body {
-            background-color: black;
-            
-        }
-        
-        #centered {
-            margin: 0 auto;
-            width: 450px;
-        }
-        
-        hr {
-            border-top: 1px solid white;
-            width: 100%;
-        }
-        
-        #centered div {
-            margin: 5em;
-        }
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-        #w8ballAnswerText {
-            font: bold 1.5em "Courier New";
-            color: white;
-        }
-        
-        #footer {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            padding: 1rem;
-            text-align: right;
-            border-top: 1px solid white;
-            color: white;
-        }
-        
-		.hidden { display:none;}
-		
-        .menu {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .menu p {
-            margin: 0 auto;
+    <title>Hello, world!</title>
+
+    <style>
+
+			html {
+				font-size: calc(.5em + 1vw);
+			}
+
+      body {
+        background-color: #222222;
+        color: white;
+      }
+
+      @keyframes smoky {
+        30% {
+          text-shadow: 0 0 20px whitesmoke;
         }
 
-		
-        /* spinner */
-        
-		#loader {
-		  border: 16px solid #f3f3f3;
-		  border-radius: 50%;
-		  border-top: 16px solid #3498db;
-		  width: 30px;
-		  height: 30px;
-		  -webkit-animation: spin 2s linear infinite; /* Safari */
-		  animation: spin 2s linear infinite;
-		}
-		
-		/* Safari */
-		@-webkit-keyframes spin {
-		  0% { -webkit-transform: rotate(0deg); }
-		  100% { -webkit-transform: rotate(360deg); }
-		}
-		
-		@keyframes spin {
-		  0% { transform: rotate(0deg); }
-		  100% { transform: rotate(360deg); }
-		}
-        
-        /* end spinner */
-        
-        
-        /* smokey text effect */
-        span {
-            text-shadow: 0 0 0 whitesmoke;
-        }
-        
-
-        @keyframes smoky {
-          60% {
-            text-shadow: 0 0 20px whitesmoke;
+          from {
+              opacity: 0;
           }
           to {
-            transform:
-              translate3d(-15rem,-8rem,0)
-              rotate(40deg)
-              skewX(-70deg)
-              scale(1.5);
-            opacity: 0;
+              opacity: 1;
           }
-        }
-        /* end smokey text effext */
+      }
+    </style>
 
-        
-</style>
-	
-	</head>
+  </head>
+  <body class="d-flex flex-column h-100"    >
 
-	<body>
-        
-        
-        <div id="centered">
-            
-            <div id="w8ballQuestion">
-                <form name="w8ballForm">
-                    <input autofocus type="text" size="35"  id="w8ballQuestionText" placeholder="your question here">
-                    <button>Ask!</button>
-                </form>
-            </div>
-		
-            <div id="w8ball">
-                <div id="loader" class="hidden"></div>	
-            </div>
+    <header>
+        <img class="img-fluid" src="android-chrome-192x192.png" alt="askw8ball.com logo" />
+    </header>
 
-            <div id="w8ballAnswer">
-                <p id="w8ballAnswerText">
-                   
-                </p>
-            </div>
+    <main role="main" class="flex-shrink-0">
+      <div class="container">
+				<div>
+            <h2>Craving for food?<br />Ask the w8ball for advice</span>
+
+            <form name="w8ballForm">
+                <input required autofocus class="form-control form-control-lg mb-3" type="text" id="w8ballQuestionText" placeholder="what are you craving for?">
+            </form>
 
         </div>
-            
-        <div id="footer" class="menu">
-                <p>About</p>
-                <p><img alt="avatar" src="https://www.gravatar.com/avatar/dd666ee8bef207889d2325f077228054.jpg?s=50" /></p>        
+
+        <div>
+          <h4 id="w8ballQuestionReformulated" class="font-italic mb-5"></h2>
+          <p id="w8ballAnswerText" class="h1"></p>
         </div>
 
-		
-		<script>
+        </div>
+
+      </div>
+  </main>
+
+      <footer class="mt-auto py-3">
+          <a href="https://twitter.com/intent/tweet?button_hashtag=AskW8ball&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-show-count="false">Tweet #AskW8ball</a>
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+          <br />
+          <iframe src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.askw8ball.com&width=104&layout=button_count&action=like&size=small&show_faces=false&share=true&height=24&appId=2306654189571979" width="150" height="24" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+      </footer>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script>
 			const form = document.getElementsByName('w8ballForm')[0];
 			const w8ballQuestionText = document.getElementById('w8ballQuestionText');
 			const w8ballAnswerText = document.getElementById('w8ballAnswerText');
-			
+            const w8ballQuestionReformulated = document.getElementById('w8ballQuestionReformulated');
+
 			const supportedLanguages = ['nl','fr','en','de'];
-			
+
+            const reformulatedQuestionText = '\"Dear w8ball, can I order ';
+
             /**
             * ANSWERS
             */
@@ -157,7 +100,7 @@
                 },
                 imageSrc:'./slimming-2728331_640.jfif'
             };
-									
+
 			const dont = {
                 text: {
                     nl:"niet doen - je zal het je morgen beklagen",
@@ -167,65 +110,69 @@
                 },
                 imageSrc:'./nature-3238937_640.jfif'
             };
-			
-			const answers = [fat,dont];
-			
+
+            const ok = {
+                text: {
+                    nl:"ok - je hebt het verdiend",
+                    fr:"",
+                    en:"ok - you deserved it",
+                    de:""
+                },
+                imageSrc:''
+            };
+
+			const answers = [fat,dont,ok];
+
             /**
             * STOP ANSWERS
             */
-            
+
 			form.onsubmit = function(event){
 				//prevent page from reloading and clearing the answer's text and image
 				event.preventDefault();
-				
-				//clean up eventual previous searchresult
+
+                w8ballQuestionReformulated.textContent = reformulatedQuestionText + w8ballQuestionText.value + '\"';
+
+				//clean up eventual previous search result
 				w8ballAnswerText.textContent = '';
-				
-				
-				think();	
+
+				think();
 			}
-			
-			function think(){								
+
+			function think(){
 				const answer = answers[getRandomInt(0,answers.length)];
-                
+
                 /* TODO
-                check again when working on internationalization 
+                check again when working on internationalization
 				const browserLanguage = navigator.language.substring(0,2).toLowerCase();
-				
+
 				//default to english in case we don't support the user's language yet
 				const answerTextLanguage = supportedLanguages.indexOf(browserLanguage)>-1 ? browserLanguage : 'en';
-				
+
                 */
-                
+
                 const answerTextLanguage = 'en';
 				const answerString = answer.text[answerTextLanguage];
-                
-                for(i=0;i<answerString.length;i -=- 1){
-                    var answerSpan = document.createElement('span');
-                    answerSpan.setAttribute('id','s'+i);
-                    answerSpan.setAttribute('style','animation: smoky 5s ' +(i+0.5)+ 's both;animation-direction: reverse;');
-        
-                    const currentChar = answerString[i];
-                    if(currentChar ===' '){
-                        answerSpan.innerHTML = "&nbsp;";
-                    } else {
-                        answerSpan.textContent  = currentChar;
-                    }
-                    w8ballAnswerText.appendChild(answerSpan);
-                    
+                const answerStringPlit = answerString.split(' ');
+
+                for(i=0;i<answerStringPlit.length;i -=- 1){
+                    var wordSpan = document.createElement('span');
+
+                    wordSpan.setAttribute('id','s'+i);
+                    wordSpan.setAttribute('style','animation: smoky 5s ' +(i+0.5)+ 's both;');
+
+                    wordSpan.textContent  = answerStringPlit[i] + ' ';
+
+                    w8ballAnswerText.appendChild(wordSpan);
                 }
-                
-				
+
 				//clear question text
 				w8ballQuestionText.value = "";
-				
-				document.getElementById('loader').style.display = 'none';
-				
 			}
-			
+
 			/*
-			*	below function returns a number between a minimum (inclusive) and a maximum (exclusive)
-			* source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+			*    below function returns a number between a minimum (inclusive) and a maximum (exclusive)
+			*    source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 			*/
 			function getRandomInt(min, max) {
   			min = Math.ceil(min);
@@ -233,7 +180,7 @@
   			return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 			}
 		</script>
-		
-	</body>
 
-</html> 
+
+  </body>
+</html>

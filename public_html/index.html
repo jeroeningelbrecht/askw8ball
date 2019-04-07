@@ -33,6 +33,7 @@
               opacity: 1;
           }
       }
+
     </style>
 
   </head>
@@ -42,41 +43,40 @@
         <img class="img-fluid" src="android-chrome-192x192.png" alt="askw8ball.com logo" />
     </header>
 
-    <main role="main" class="flex-shrink-0">
-			<div class="float-right d-none d-lg-block">
-				<a class="twitter-timeline" data-theme="dark" href="https://twitter.com/askw8ball?ref_src=twsrc%5Etfw">Tweets by askw8ball</a>
-			</div>
+    	<main role="main" class="flex-shrink-0">
+				<div class="float-right d-none d-lg-block">
+					<a class="twitter-timeline" data-theme="dark" href="https://twitter.com/askw8ball?ref_src=twsrc%5Etfw">Tweets by askw8ball</a>
+				</div>
 
-      <div class="container">
-				<div>
-            <h2>Craving for food?<br />Ask the w8ball for advice</span>
+      	<div class="container">
+					<div>
+	            <h2>Plan to order takeaway?<br />Ask the w8ball for advice.</h2>
 
-            <form name="w8ballForm">
-                <input required autofocus class="form-control form-control-lg mb-3" type="text" id="w8ballQuestionText" placeholder="what are you craving for?">
-            </form>
+	            <form name="w8ballForm">
+	                <input required autofocus class="form-control form-control-lg mb-3" type="text" id="w8ballQuestionText" placeholder="what are you craving for?">
+	            </form>
+
+	        </div>
+
+        	<div>
+	          <h4 id="w8ballQuestionReformulated" class="font-italic mb-5"></h2>
+	          <p id="w8ballAnswerText" class="h1"></p>
+	        </div>
 
         </div>
+  		</main>
 
-        <div>
-          <h4 id="w8ballQuestionReformulated" class="font-italic mb-5"></h2>
-          <p id="w8ballAnswerText" class="h1"></p>
-        </div>
+      <footer class="mt-auto">
+				<a href="https://twitter.com/intent/tweet?button_hashtag=AskW8ball&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-show-count="false">Tweet #AskW8ball</a>
+				<a href="https://twitter.com/intent/tweet?screen_name=askw8ball&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-show-count="false">Tweet to @askw8ball</a>
+				<a href="https://twitter.com/askw8ball?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @askw8ball</a>
 
-        </div>
-
-
+				<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 
-  </main>
+        <iframe src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.askw8ball.com&width=104&layout=button_count&action=like&size=small&show_faces=false&share=true&height=20&appId=2306654189571979" width="150" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
 
-      <footer class="mt-auto py-3">
-					<a href="https://twitter.com/askw8ball?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @askw8ball</a>
-          <a href="https://twitter.com/intent/tweet?button_hashtag=AskW8ball&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-show-count="false">Tweet #AskW8ball</a>
-					<a href="https://twitter.com/intent/tweet?screen_name=askw8ball&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-show-count="false">Tweet to @askw8ball</a>
-					<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-          <br />
-          <iframe src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.askw8ball.com&width=104&layout=button_count&action=like&size=small&show_faces=false&share=true&height=24&appId=2306654189571979" width="150" height="24" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
       </footer>
 
 
@@ -86,60 +86,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+		<!-- import possible answers -->
+		<script src="js/answers.json"></script>
+
     <script>
 			const form = document.getElementsByName('w8ballForm')[0];
 			const w8ballQuestionText = document.getElementById('w8ballQuestionText');
 			const w8ballAnswerText = document.getElementById('w8ballAnswerText');
-            const w8ballQuestionReformulated = document.getElementById('w8ballQuestionReformulated');
+			const w8ballQuestionReformulated = document.getElementById('w8ballQuestionReformulated');
+			const reformulatedQuestionText = '\"Dear w8ball, can I order ';
 
 			const supportedLanguages = ['nl','fr','en','de'];
+			//define what subset of answers you want to support on the page
+			const answers = [fat,dont,ok,sexiness,mother,charity,no,yes];
 
-            const reformulatedQuestionText = '\"Dear w8ball, can I order ';
-
-            /**
-            * ANSWERS
-            */
-			const fat = {
-                text:{
-                    nl:"neen - je bent nu al dik",
-                    fr:"non - t'es déjà trop gros",
-                    en:"no - you're fat already",
-                    de:"nein - du bisst jetzt zu fett"
-                },
-                imageSrc:'./slimming-2728331_640.jfif'
-            };
-
-			const dont = {
-                text: {
-                    nl:"niet doen - je zal het je morgen beklagen",
-                    fr:"non - tu le regretteras demain",
-                    en:"don't - you'll regret it tomorrow",
-                    de:"nein - sie werden es morgen bereuen"
-                },
-                imageSrc:'./nature-3238937_640.jfif'
-            };
-
-            const ok = {
-                text: {
-                    nl:"ok - je hebt het verdiend",
-                    fr:"",
-                    en:"ok - you deserved it",
-                    de:""
-                },
-                imageSrc:''
-            };
-
-			const answers = [fat,dont,ok];
-
-            /**
-            * STOP ANSWERS
-            */
+			$(function () {
+  			$('[data-toggle="popover"]').popover()
+			});
 
 			form.onsubmit = function(event){
 				//prevent page from reloading and clearing the answer's text and image
 				event.preventDefault();
 
-                w8ballQuestionReformulated.textContent = reformulatedQuestionText + w8ballQuestionText.value + '\"';
+        w8ballQuestionReformulated.textContent = reformulatedQuestionText + w8ballQuestionText.value + '\"';
 
 				//clean up eventual previous search result
 				w8ballAnswerText.textContent = '';

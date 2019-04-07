@@ -1,0 +1,89 @@
+const template = {
+    "text":{
+      "nl":"",
+      "fr":"",
+      "en":"",
+      "de":""
+    },
+    "imageSrc":""
+};
+
+const no = {
+    "text":{
+      "nl":"neen",
+      "fr":"non",
+      "en":"no",
+      "de":"nein"
+    },
+    "imageSrc":""
+};
+
+const yes = {
+    "text":{
+      "nl":"ja",
+      "fr":"oui",
+      "en":"yes",
+      "de":"jawohl"
+    },
+    "imageSrc":""
+};
+
+const fat = {
+    "text":{
+        "nl":"neen - je bent nu al dik",
+        "fr":"non - t'es déjà trop gros",
+        "en":"no - you're fat already",
+        "de":"nein - du bisst jetzt zu fett"
+    },
+    "imageSrc":"../slimming-2728331_640.jfif"
+};
+
+const sexiness = {
+    "text":{
+      "nl":"neen - denk aan je sexiness",
+      "fr":"",
+      "en":"no - think about your sexiness",
+      "de":""
+    },
+    "imageSrc":""
+};
+
+const mother = {
+    "text":{
+      "nl":"neen - wat zou je moeder zeggen",
+      "fr":"",
+      "en":"no - what would your mother say",
+      "de":""
+    },
+    "imageSrc":""
+};
+
+const charity = {
+    "text":{
+      "nl":"neen - doneer het geld aan een goed doel",
+      "fr":"",
+      "en":"no - give the money to charity",
+      "de":""
+    },
+    "imageSrc":""
+};
+
+const dont = {
+    "text": {
+        "nl":"niet doen - je zal het je morgen beklagen",
+        "fr":"non - tu le regretteras demain",
+        "en":"don't - you'll regret it tomorrow",
+        "de":"nein - sie werden es morgen bereuen"
+    },
+    "imageSrc":"../nature-3238937_640.jfif"
+};
+
+const ok = {
+    "text": {
+        "nl":"ok - je hebt het verdiend",
+        "fr":"",
+        "en":"ok - you deserved it",
+        "de":""
+    },
+    "imageSrc":""
+};
